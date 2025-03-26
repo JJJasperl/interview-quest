@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { generateQuestions } from '../services/api';
+import VoiceInput from './VoiceInput';
 
 function JobPostForm({ setQuestions, setIsLoading, setError }) {
   const [jobPost, setJobPost] = useState('');
@@ -30,14 +31,20 @@ function JobPostForm({ setQuestions, setIsLoading, setError }) {
     <div className="job-post-form">
       <h2>Enter Job Posting</h2>
       <form onSubmit={handleSubmit}>
-        <textarea
-          value={jobPost}
-          onChange={(e) => setJobPost(e.target.value)}
-          placeholder="Paste the job posting here..."
-          rows={10}
-          required
-        />
-        <button type="submit">Generate Questions</button>
+        <div className="input-controls">
+          <textarea
+            value={jobPost}
+            onChange={(e) => setJobPost(e.target.value)}
+            placeholder="Paste the job posting here..."
+            rows={10}
+            required
+          />
+          <VoiceInput onTextCaptured={setJobPost} />
+        </div>
+        <div className="form-actions">
+          <button type="submit">Generate Questions</button>
+          <button type="button" onClick={() => setJobPost('')}>Clear</button>
+        </div>
       </form>
     </div>
   );
