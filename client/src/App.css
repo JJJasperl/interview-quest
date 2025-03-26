@@ -1,38 +1,105 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.App-header h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+main {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 30px;
+}
+
+.job-post-form {
+  margin-bottom: 20px;
+}
+
+.job-post-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #4a90e2;
   color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-color: #357abf;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-style: italic;
+}
+
+.error {
+  color: #e74c3c;
+  padding: 10px;
+  border: 1px solid #e74c3c;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.question-list {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.question-category {
+  margin-bottom: 20px;
+}
+
+.question-category h3 {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.question-category ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.question-category li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.question-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
 }
