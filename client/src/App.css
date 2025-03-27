@@ -419,6 +419,35 @@ footer {
   }
 }
 
+/* Form Actions - Modified with a gap between buttons */
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.form-actions button {
+  transition: all 0.2s ease;
+  min-width: 140px;
+}
+
+.form-actions button:first-child {
+  background-color: #4a90e2;
+}
+
+.form-actions button:last-child {
+  background-color: #3f7dcb;
+}
+
+.form-actions button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-actions button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
 
 /* Recent Searches Styling */
 .recent-searches-header {

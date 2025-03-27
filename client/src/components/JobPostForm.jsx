@@ -100,7 +100,7 @@ function JobPostForm({ setQuestions, setIsLoading, setError, currentSearch }) {
               id="company"
               value={company}
               onChange={handleCompanyChange}
-              placeholder="Company name"
+              placeholder="Company name (optional)"
             />
           </div>
 
@@ -111,7 +111,7 @@ function JobPostForm({ setQuestions, setIsLoading, setError, currentSearch }) {
               id="jobTitle"
               value={jobTitle}
               onChange={handleJobTitleChange}
-              placeholder="Job title"
+              placeholder="Job title (optional)"
             />
           </div>
         </div>
