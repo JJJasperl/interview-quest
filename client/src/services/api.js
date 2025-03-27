@@ -11,3 +11,24 @@ export const generateQuestions = async (jobPost) => {
     throw error;
   }
 };
+
+export const extractJobDetails = async (jobPost) => {
+  try {
+    const response = await fetch(`${API_URL}/extract-job-details`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ jobPost }),
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to extract job details');
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error('Error extracting job details:', error);
+    return { company: '', jobTitle: '' };
+  }
+};

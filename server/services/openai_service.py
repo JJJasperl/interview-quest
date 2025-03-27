@@ -56,3 +56,44 @@ def generate_questions_with_openai(job_post):
     except Exception as e:
         print(f"OpenAI API error: {str(e)}")
         raise Exception(f"Failed to generate questions: {str(e)}")
+    
+
+def extract_job_details_with_openai(job_post):
+    """Extract company name and job title from job posting using OpenAI."""
+    try:
+        # System message to guide the AI
+        system_message = """
+        You are a job posting analysis expert. Extract the company name and job title from 
+        the job posting provided. Return only valid JSON with "company" and "jobTitle" keys.
+        If you cannot detect either value with high confidence, leave it as an empty string.
+        """
+        
+        # User message with the job post
+        user_message = f"Extract the company name and job title from this job posting:\n\n{job_post}"
+        
+        # Make the API call
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            response_format={"type": "json_object"},
+            messages=[
+                {"role": "system", "content": system_message},
+                {"role": "user", "content": user_message}
+            ],
+            temperature=0.3,  # Lower temperature for more deterministic output
+            max_tokens=150    # This should be plenty for the company and job title
+        )
+        
+        # Parse the response
+        content = response.choices[0].message.content
+        extracted_data = json.loads(content)
+        
+        # Return the extracted data
+        return {
+            'company': extracted_data.get('company', ''),
+            'jobTitle': extracted_data.get('jobTitle', '')
+        }
+            
+    except Exception as e:
+        print(f"OpenAI API error in extract_job_details: {str(e)}")
+        # In case of failure, return empty values
+        return {'company': '', 'jobTitle': ''}
