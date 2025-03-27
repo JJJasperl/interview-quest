@@ -43,6 +43,15 @@ function HomePage() {
     }
   }, [location]);
 
+  // Wrapper for setting loading state that also clears questions
+  const handleSetIsLoading = (loading) => {
+    // When we start loading, clear the questions
+    if (loading) {
+      setQuestions([]);
+    }
+    setIsLoading(loading);
+  };
+
   // **Handle New Question Generation**
   // Updates the UI with newly generated questions and stores the search entry.
   const handleQuestionsGenerated = (questions, formData) => {
@@ -89,13 +98,19 @@ function HomePage() {
         {/* Job Post Form for Generating Questions */}
         <JobPostForm 
           setQuestions={handleQuestionsGenerated}
-          setIsLoading={setIsLoading} 
+          setIsLoading={handleSetIsLoading} 
           setError={setError}
           currentSearch={currentSearch}
         />
         
-        {/* Loading and Error Messages */}
-        {isLoading && <div className="loading">Generating questions...</div>}
+        {/* Enhanced Loading Component */}
+        {isLoading && (
+          <div className="loading-container">
+            <div className="spinner"></div>
+            <p>Generating thoughtful questions...</p>
+          </div>
+        )}
+        
         {error && <div className="error">Error: {error}</div>}
         
         {/* Display Generated Questions */}
